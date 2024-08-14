@@ -7,7 +7,11 @@ param sku object = {
   name: 'standard'
 }
 
-param authOptions object = {}
+param authOptions object = {
+  aadOrApiKey: {
+      aadAuthFailureMode: 'http401WithBearerChallenge'
+  }
+}
 param disableLocalAuth bool = false
 param encryptionWithCmk object = {
   enforcement: 'Unspecified'
@@ -29,7 +33,7 @@ param replicaCount int = 1
   'free'
   'standard'
 ])
-param semanticSearch string = 'disabled'
+param semanticSearch string = 'free'
 
 param sharedPrivateLinkStorageAccounts array = []
 
@@ -44,7 +48,7 @@ resource search 'Microsoft.Search/searchServices@2023-11-01' = {
   // The free tier does not support managed identity
   identity: searchIdentityProvider
   properties: {
-    authOptions: disableLocalAuth ? null : authOptions
+    authOptions: disableLocalAuth ? null : authOptions 
     disableLocalAuth: disableLocalAuth
     encryptionWithCmk: encryptionWithCmk
     hostingMode: hostingMode
@@ -71,3 +75,4 @@ output id string = search.id
 output endpoint string = 'https://${name}.search.windows.net/'
 output name string = search.name
 output principalId string = !empty(searchIdentityProvider) ? search.identity.principalId : ''
+

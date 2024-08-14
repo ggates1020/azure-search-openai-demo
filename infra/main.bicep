@@ -491,7 +491,7 @@ module storage 'core/storage/storage-account.bicep' = {
     publicNetworkAccess: publicNetworkAccess
     bypass: bypass
     allowBlobPublicAccess: false
-    allowSharedKeyAccess: false
+    allowSharedKeyAccess: true
     sku: {
       name: storageSkuName
     }
@@ -518,7 +518,7 @@ module userStorage 'core/storage/storage-account.bicep' = if (useUserUpload) {
     publicNetworkAccess: publicNetworkAccess
     bypass: bypass
     allowBlobPublicAccess: false
-    allowSharedKeyAccess: false
+    allowSharedKeyAccess: true
     isHnsEnabled: true
     sku: {
       name: storageSkuName

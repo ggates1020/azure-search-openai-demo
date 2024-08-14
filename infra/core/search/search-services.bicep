@@ -33,7 +33,7 @@ param replicaCount int = 1
   'free'
   'standard'
 ])
-param semanticSearch string = 'free'
+param semanticSearch string = 'disabled'
 
 param sharedPrivateLinkStorageAccounts array = []
 
@@ -48,7 +48,7 @@ resource search 'Microsoft.Search/searchServices@2023-11-01' = {
   // The free tier does not support managed identity
   identity: searchIdentityProvider
   properties: {
-    authOptions: disableLocalAuth ? null : authOptions 
+    authOptions: disableLocalAuth ? null : authOptions
     disableLocalAuth: disableLocalAuth
     encryptionWithCmk: encryptionWithCmk
     hostingMode: hostingMode

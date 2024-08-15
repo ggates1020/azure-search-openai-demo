@@ -471,6 +471,16 @@ module searchService 'core/search/search-services.bicep' = {
     sharedPrivateLinkStorageAccounts: usePrivateEndpoint ? [ storage.outputs.id ] : []
   }
 }
+module bingSearch 'core/search/bing.bicep' = {
+  name: 'bing-search'
+  scope: searchServiceResourceGroup
+  params: {
+    name: '${abbrs.bingSearch}${resourceToken}'
+    location: 'global'
+    tagValues: tags
+    sku: 'S6'
+  }
+}
 
 module searchDiagnostics 'core/search/search-diagnostics.bicep' = if (useApplicationInsights) {
   name: 'search-diagnostics'

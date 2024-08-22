@@ -157,6 +157,7 @@ markupsafe==2.1.5
     #   jinja2
     #   quart
     #   werkzeug
+microsoft-bing-websearch==1.0.0
 microsoft-kiota-abstractions==1.3.3
     # via
     #   microsoft-kiota-authentication-azure

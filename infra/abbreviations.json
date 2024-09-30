@@ -6,6 +6,7 @@
   "appContainerApps": "ca-",
   "authorizationPolicyDefinitions": "policy-",
   "automationAutomationAccounts": "aa-",
+  "bingSearch": "bing-",
   "blueprintBlueprints": "bp-",
   "blueprintBlueprintsArtifacts": "bpa-",
   "cacheRedis": "redis-",

@@ -3,6 +3,14 @@ import { useTranslation } from "react-i18next";
 
 import styles from "./Example.module.css";
 
+const DEFAULT_EXAMPLES: string[] = ["What is a SST?", "What happens in a performance review?", "What are the Navisiet holidays in the United States?"];
+
+const GPT4V_EXAMPLES: string[] = [
+    "Compare the impact of interest rates and GDP in financial markets.",
+    "What is the expected trend for the S&P 500 index over the next five years? Compare it to the past S&P 500 performance",
+    "Can you identify any correlation between oil prices and stock market trends?"
+];
+
 interface Props {
     onExampleClicked: (value: string) => void;
     useGPT4V?: boolean;

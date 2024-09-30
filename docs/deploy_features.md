@@ -7,6 +7,7 @@ You should typically enable these features before running `azd up`. Once you've 
 * [Using GPT-4](#using-gpt-4)
 * [Using text-embedding-3 models](#using-text-embedding-3-models)
 * [Enabling GPT-4 Turbo with Vision](#enabling-gpt-4-turbo-with-vision)
+* [Enabling language picker](#enabling-language-picker)
 * [Enabling speech input/output](#enabling-speech-inputoutput)
 * [Enabling Integrated Vectorization](#enabling-integrated-vectorization)
 * [Enabling authentication](#enabling-authentication)
@@ -141,6 +142,16 @@ If you have already deployed:
 
 This section covers the integration of GPT-4 Vision with Azure AI Search. Learn how to enhance your search capabilities with the power of image and text indexing, enabling advanced search functionalities over diverse document types. For a detailed guide on setup and usage, visit our [Enabling GPT-4 Turbo with Vision](gpt4v.md) page.
 
+## Enabling language picker
+
+You can optionally enable the language picker to allow users to switch between different languages. Currently, it supports English, Spanish, French, and Japanese.
+
+To add support for additional languages, create new locale files and update `app/frontend/src/i18n/config.ts` accordingly. To enable language picker, run:
+
+```shell
+azd env set ENABLE_LANGUAGE_PICKER true
+```
+
 ## Enabling speech input/output
 
 [📺 Watch a short video of speech input/output](https://www.youtube.com/watch?v=BwiHUjlLY_U)
@@ -213,13 +224,13 @@ and will have ACLs associated with that directory. When the ingester runs, it wi
 If you are enabling this feature on an existing index, you should also update your index to have the new `storageUrl` field:
 
 ```shell
-./scripts/manageacl.ps1  -v --acl-action enable_acls
+python ./scripts/manageacl.py  -v --acl-action enable_acls
 ```
 
 And then update existing search documents with the storage URL of the main Blob container:
 
 ```shell
-./scripts/manageacl.ps1  -v --acl-action update_storage_urls --url <https://YOUR-MAIN-STORAGE-ACCOUNT.blob.core.windows.net/content/>
+python ./scripts/manageacl.py  -v --acl-action update_storage_urls --url <https://YOUR-MAIN-STORAGE-ACCOUNT.blob.core.windows.net/content/>
 ```
 
 Going forward, all uploaded documents will have their `storageUrl` set in the search index.
